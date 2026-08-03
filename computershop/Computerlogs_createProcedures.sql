@@ -1,0 +1,160 @@
+USE project;
+
+/* ========================================================= 
+   CURSOR-BASED STORED PROCEDURES (MariaDB Compatible)
+   ========================================================= */ 
+
+-- ============================================================
+-- PROCEDURE 1: recalc_all_order_totals
+-- PURPOSE: Recalculate all order totals using a cursor loop
+-- USAGE: CALL recalc_all_order_totals();
+-- NOTE: Uses cursor to iterate through all orders
+-- ============================================================
+--
+-- DELIMITER $$
+--
+-- CREATE PROCEDURE recalc_all_order_totals()
+-- BEGIN
+--     DECLARE done INT DEFAULT FALSE;
+--     DECLARE v_oid INT;
+--     
+--     -- Declare cursor for all order IDs
+--     DECLARE cur CURSOR FOR SELECT oid FROM orders;
+--     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+--     
+--     OPEN cur;
+--     
+--     read_loop: LOOP
+--         FETCH cur INTO v_oid;
+--         IF done THEN
+--             LEAVE read_loop;
+--         END IF;
+--         
+--         -- Update total for this order
+--         UPDATE orders
+--         SET total = COALESCE(
+--             (SELECT SUM(od.qty * (SELECT price FROM products WHERE pid = od.pid))
+--              FROM `order-details` od
+--              WHERE od.oid = v_oid), 0)
+--         WHERE oid = v_oid;
+--     END LOOP;
+--     
+--     CLOSE cur;
+-- END$$
+--
+-- DELIMITER ; 
+
+-- ============================================================
+-- PROCEDURE 2: rebuild_stock_from_orderdetails
+-- PURPOSE: Rebuild/validate stock quantities from order-details
+-- USAGE: CALL rebuild_stock_from_orderdetails();
+-- NOTE: Uses cursor to iterate through all products
+-- ============================================================
+--
+-- DELIMITER $$
+--
+-- CREATE PROCEDURE rebuild_stock_from_orderdetails()
+-- BEGIN
+--     DECLARE done INT DEFAULT FALSE;
+--     DECLARE v_pid INT;
+--     
+--     -- Declare cursor for all product IDs
+--     DECLARE cur2 CURSOR FOR SELECT pid FROM products;
+--     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+--     
+--     OPEN cur2;
+--     
+--     read_loop: LOOP
+--         FETCH cur2 INTO v_pid;
+--         IF done THEN
+--             LEAVE read_loop;
+--         END IF;
+--         
+--         -- Ensure quantity is not negative
+--         UPDATE products
+--         SET qtyavail = CASE WHEN qtyavail < 0 THEN 0 ELSE qtyavail END
+--         WHERE pid = v_pid;
+--     END LOOP;
+--     
+--     CLOSE cur2;
+-- END$$
+--
+-- DELIMITER ; 
+
+-- ============================================================
+-- PROCEDURE 3: place_order
+-- PURPOSE: Place a complete order with transactional integrity
+-- USAGE: CALL place_order(aid, address, city, country);
+--        CALL place_order(14, 'Main Street', 'Beirut', 'Lebanon');
+-- PARAMETERS:
+--   - in_p_aid: Account ID of customer placing order
+--   - in_p_address: Delivery address
+--   - in_p_city: Delivery city
+--   - in_p_country: Delivery country
+-- NOTE: Uses cursor to iterate through cart items
+-- NOTE: Transactional - rolls back on error
+-- ============================================================
+--
+-- DELIMITER $$
+--
+-- CREATE PROCEDURE place_order(
+--     IN in_p_aid INT,
+--     IN in_p_address VARCHAR(255),
+--     IN in_p_city VARCHAR(50),
+--     IN in_p_country VARCHAR(100)
+-- )
+-- BEGIN
+--     DECLARE v_new_oid INT;
+--     DECLARE v_pid INT;
+--     DECLARE v_cqty INT;
+--     DECLARE done INT DEFAULT FALSE;
+--     
+--     DECLARE cur_cart CURSOR FOR 
+--         SELECT pid, cqty FROM cart WHERE aid = in_p_aid;
+--     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+--     
+--     DECLARE EXIT HANDLER FOR SQLEXCEPTION
+--     BEGIN
+--         -- Rollback on any exception
+--         ROLLBACK;
+--         RESIGNAL;
+--     END;
+--     
+--     START TRANSACTION;
+--     
+--     -- Create new order
+--     INSERT INTO orders 
+--         (dateod, datedel, aid, address, city, country, account, total)
+--     VALUES 
+--         (CURDATE(), NULL, in_p_aid, in_p_address, in_p_city, in_p_country, NULL, 0);
+--     
+--     SET v_new_oid = LAST_INSERT_ID();
+--     
+--     -- Process each item in cart
+--     OPEN cur_cart;
+--     
+--     read_loop: LOOP
+--         FETCH cur_cart INTO v_pid, v_cqty;
+--         IF done THEN
+--             LEAVE read_loop;
+--         END IF;
+--         
+--         -- Check if enough stock available
+--         IF (SELECT qtyavail FROM products WHERE pid = v_pid) < v_cqty THEN
+--             SIGNAL SQLSTATE '45010' SET MESSAGE_TEXT = 'Not enough stock to place order (during place_order).';
+--         END IF;
+--         
+--         -- Insert order detail
+--         INSERT INTO `order-details` (oid, pid, qty)
+--         VALUES (v_new_oid, v_pid, v_cqty);
+--     END LOOP;
+--     
+--     CLOSE cur_cart;
+--     
+--     -- Recalculate order total
+--     CALL recalc_all_order_totals();
+--     
+--     COMMIT;
+-- END$$
+--
+-- DELIMITER ; 
