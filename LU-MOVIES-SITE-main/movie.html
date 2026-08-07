@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+<link rel="shortcut icon" href="logo/video-camera copy.png" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Movies</title>
+<link rel="stylesheet" href="index.css" />
+<!-- font cairo -->
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link
+href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+rel="stylesheet"
+/>
+<!-- star icon -->
+<link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+</head>
+<video   autoplay muted loop class="sonic">
+            <source src="logo/Movies/sonic.mp4" type="video/mp4">
+        </video>
+<body>
+    <div class="slide-content">
+    <div class="item-content-wraper">
+      <div class="item-content-title top-down">
+          SONIC
+      </div>
+      <div class="movie-infos top-down delay-2">
+          <div class="movie-info">
+              <i class="bx bxs-star"></i>
+              <span>7.8</span>
+          </div>
+          <div class="movie-info">
+              <i class="bx bxs-time"></i>
+              <span>145 mins</span>
+          </div>
+          <div class="movie-info">
+              <span>HD</span>
+          </div>
+          <div class="movie-info">
+              <span>15+</span>
+          </div>
+      </div>
+      <div class="item-content-description top-down delay-4">
+       Taking refuge on Earth, when Sonic uses his incredible speed and accidentally knock out the power in part of the United States, he catches the attention of Dr. Robotnik and must stop him from using his unique power for world domination.
+      </div>
+      <div class="item-action top-down delay-6">
+          <a href="#" class="btn btn-hover">
+              <i class="bx bxs-right-arrow"></i>
+              <span onclick="displayMovieDetails(Sonic)">Watch now</span>
+          </a>
+      </div>
+    </div>
+    
+    </div>
+    
+ 
+<div class="upper-container">
+<div class="nav">
+
+<a href="#" class="logo-container">
+<img src="logo/video-camera.png" class="logo" /><span id="lu">LU</span>TV
+</a>
+<div class="nav-center">
+<ul class="nav-menu">
+<li><a href="home.html">Home</a></li>
+<li><a href="movie.html">Movies</a></li>
+<li><a href="series.html">Series</a></li>
+</ul>
+<div class="searchBox">
+<button onclick="suggetion()" class ="searchTab" aria-label="Search">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10ZM15.6177 17.0319C14.078 18.2635 12.125 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 12.125 18.2635 14.078 17.0319 15.6177L22.7071 21.2929L21.2929 22.7071L15.6177 17.0319Z" fill="currentColor"></path>
+    </svg>
+</button>
+<input type="text" class="searchInput" placeholder="Search...">
+</div>
+
+<div class="toggle-switch">
+<label class="switch-label">
+<input type="checkbox" class="checkbox" id="modeToggle">
+<span class="slider"></span>
+</label>
+</div>
+</div>
+
+<div class="Menucontainer">
+<button class="humberger" >
+<div class="line1"></div>
+<div class="line2"></div>
+<div class="line3"></div>
+</button>
+</div>
+
+<div class="Downmenu" id="Downmenu">
+<a href="home.html">
+<div class="img">
+<img src="logo/home.png" alt="Home Icon" />
+</div>
+Home
+</a>
+<a href="#watchlist">
+<div class="img">
+<img src="logo/heart.png" alt="Watchlist Icon" />
+</div>
+<span>Favorite list</span>
+</a>
+<a href="randommovie.html">
+<div class="img">
+<img src="logo/surprise-box.png" alt="Random Movie Icon" />
+</div>
+Random Movie
+</a>
+<a href="index.html">
+<div class="img">
+<img src="logo/user.png" alt="User Icon" />
+</div>
+Log out
+</a>
+</div>
+</div>
+</div>
+<div class="carousel-container-smaller">
+<div class="carousel-category-title">
+<h2>action</h2>
+</div>
+<div class="carousel1">
+
+<div class="slide1">
+<img onclick="displayMovieDetails(hours)" src="logo/Movies/ACTION/13hours/13hours/13hours.jpg" alt="Small Slide 1">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(hitman)" src="logo/Movies/ACTION/hitman/hitman/hitman.jpg" alt="Small Slide 2">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(spiderman)" src="logo/Movies/ACTION/spiderman/spiderman/img.jpg" alt="Small Slide 3">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(transformers)" src="logo/Movies/ACTION/transformers/transformers/transformers.jpg" alt="Small Slide 4">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(venom)" src="logo/Movies/ACTION/venom/venom/venom.jpg" alt="Small Slide 5">
+</div>
+ 
+</div>
+<button class="prev">❮</button>
+<button class="next">❯</button>
+</div>
+
+<div class="carousel-container-smaller1">
+<div class="carousel-category-title">
+<h2>ANIME</h2>
+</div>
+<div class="carousel2">
+
+<div class="slide1">
+<img onclick="displayMovieDetails(kurokonobasketball)" src="logo/Movies/anime/kurokobasketall/kurokobasketall/kuroko.jpg" alt="Small Slide 1">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(pokemon)" src="logo/Movies/anime/pokemon/pokemon/pokimon.jpg" alt="Small Slide 2">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(sevendeadlysins)" src="logo/Movies/anime/seven deadly sins/seven deadly sins/sevendeadlysins.jpg" alt="Small Slide 3">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(spyxfamily)" src="logo/Movies/anime/spyxfamily/spyxfamily/spyxfamily.jpg" alt="Small Slide 4">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(violetevergarden)" src="logo/Movies/anime/violetevergarden/violetevergarden/violetevergarden.jpg" alt="Small Slide 5">
+</div>
+ 
+</div>
+<button class="prev">❮</button>
+<button class="next">❯</button>
+</div>
+<div class="carousel-container-smaller2">
+<div class="carousel-category-title">
+<h2>COMEDY</h2>
+</div>
+<div class="carousel3">
+
+<div class="slide1">
+<img onclick="displayMovieDetails(badboy)" src="logo/Movies/comedy/badboy (2)/badboy/AAAABTk9BibYdZGbcdCX0rbOiypX_MT8aZ7Ss11Wzertr-UGgZIwZPjMRqiWfNJxTF_Yu7Z3YSXLfk0RxForTuzFF5PugU76KwQTBbY.jpg" alt="Small Slide 1">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(daddyshome)" src="logo/Movies/comedy/daddy's home/daddy's home/AAAABav7XxIEvSl37e0aCOpNfqYT8j9zZe4wpY-81T-hoWp2pd46OVtcxbus-X55LmfvILfMJvsNRKfQwfbA1J5ppug8lSvuU8KDA1s.jpg" alt="Small Slide 2">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(liarliar)" src="logo/Movies/comedy/LIAR LIAR/LIAR LIAR/AAAABbnQ_idz3oLGGXD6PrR-Q8YpAk2gc_riRNV8zC5hZeWv_7Av6g90UTUpZ_ON7YWeTKjOBzKWM9TAVHNUqifQmJk4hywq2gs0Gw4.jpg" alt="Small Slide 3">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(MIB)" src="logo/Movies/comedy/MIB/MIB/AAAABXae6VMA4l8N9jZhESJ2jdeIA8aC1fm6DovebEDDbkklhxPD90CLwCR6PvVDVh4UCjCEhW7S7CYdh95Sl9oUFIfq0N0fR7hYehU.jpg" alt="Small Slide 4">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(ridealong)" src="logo/Movies/comedy/Ride along/Ride along/AAAABVH5oCs-yRNIAszorggrvD9CVLmjkKWjjsreqqrCLq6ECD0eaOSFA1i-p8PwXyPdgZSsxMk80QyKqXiux4Qt8oGUhNJ40u_Bw50.jpg" alt="Small Slide 5">
+</div>
+
+</div>
+<button class="prev">❮</button>
+<button class="next">❯</button>
+</div>
+<div class="carousel-container-smaller3">
+<div class="carousel-category-title">
+<h2>DRAMA</h2>
+</div>
+<div class="carousel4">
+
+<div class="slide1">
+<img onclick="displayMovieDetails(day)" src="logo/Movies/drama/365/365/AAAABXDcas3-3m4I8zS71aGB-HWtyBECiGWBIr26PsRnDx5ioleq3gMTScysEmt7FVcw4Wmuxumv5MsFyzryeUMByBf-od49gnfxJ0g.jpg" alt="Small Slide 1">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(brothers)" src="logo/Movies/drama/Brothers/Brothers/AAAABdpkhOJpqPm4UQeCYGLNUcJoY16ksyReAO9pRtVCEKtoJWGYC0UCFqSM4RnjYkxj8cTBd0eYo0XNaRFG6gh4vDiCeZLAD9El8L0.jpg" alt="Small Slide 2">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(gifted)" src="logo/Movies/drama/gifted/gifted/AAAABTodktzMz63yrUjg_Eh6RtE7MU4v5oa877fMB88MWoO7y6vKXKGKsfuTCzuegmWqhMsZ6F0E_CtGRqzNzVM_JLXYCczsn8dwdcQ.jpg" alt="Small Slide 3">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(thegodfather)" src="logo/Movies/drama/The God father/The God father/AAAABWwopS2GP01nTscGMS2DScmEe64D5Si9USd4W-YsAz0mweNlqQTJOD-n7wdo-mxts6Ud7zqtZ21D4MH6UqyaQmM6IVRoxregFV8.jpg" alt="Small Slide 4">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(twilight)" src="logo/Movies/drama/twilight/twilight/AAAABbVfi7zEUOa58VwTNSBOvlNqvvTmtC3HZJKrdw2lgrHmWXHzFicwr2o9vVdaau3inCWUcA3xy3Bvi1gv5PNT-Zcpb1wgRmfFnVI.jpg" alt="Small Slide 5">
+</div>
+ 
+</div>
+<button class="prev">❮</button>
+<button class="next">❯</button>
+</div>
+<div class="carousel-container-smaller4">
+<div class="carousel-category-title">
+<h2>SCI FI</h2>
+</div>
+<div class="carousel5">
+
+<div class="slide1">
+<img onclick="displayMovieDetails(alita)" src="logo/Movies/sci-fi/alita/alita/alita.jpg" alt="Small Slide 1">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(godzila)" src="logo/Movies/sci-fi/godzilla/godzilla/godzilla.jpg" alt="Small Slide 2">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(moribius)" src="logo/Movies/sci-fi/morbius/morbius/morbius.jpg" alt="Small Slide 3">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(ninjaturtles)" src="logo/Movies/sci-fi/ninja turtles/ninja turtles/ninjaturtles.jpg" alt="Small Slide 4">
+</div>
+<div class="slide1">
+<img onclick="displayMovieDetails(predetor)" src="logo/Movies/sci-fi/predetor/predetor/predetor.jpg" alt="Small Slide 5">
+</div>
+
+</div>
+<button class="prev">❮</button>
+<button class="next">❯</button>
+</div>
+<footer class="footer">
+<div class="footer-container">
+<div>
+<img class="footer-logo" src="logo/video-camera.png" alt="Logo"><span id="lu">LU</span>TV
+<div>
+flixlu 2025.@ All rights reserved
+</div>
+</div>
+<!-- Column 1 -->
+<div class="footer-column">
+    <h3>About Us</h3>
+    <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</div>
+
+<!-- Column 2 -->
+<div class="footer-column">
+    <h3>Quick Links</h3>
+    <ul>
+        <li><a href="#">Movies</a></li>
+        <li><a href="#">TV Shows</a></li>
+        <li><a href="#">Genres</a></li>
+        <li><a href="#">FAQ</a></li>
+    </ul>
+</div>
+
+
+
+<!-- Column 3 -->
+<div class="footer-column">
+    <h3>Follow Us</h3>
+    <div class="footer-social-icons">
+        <a href="#" title="Facebook"><i class="fab fa-facebook"></i> <img class="facebook" src="logo/facebook.png" ></a>
+        <a href="#" title="Twitter"><i class="fab fa-twitter"></i><img class="facebook" src="logo/twitter.png"></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i> <img class="facebook" src="logo/instagram.png"></a>
+    </div>
+</div>
+
+
+
+</footer>
+<button class="button" onclick="scrollToTop()">
+<svg class="svgIcon" viewBox="0 0 384 512">
+<path
+d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+></path>
+</svg>
+</button>
+<script src="series.js"></script>
+</body>
+</html>

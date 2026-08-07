@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href="logo/video-camera copy.png" type="image/x-icon">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favorites</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: white;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: src=
+          "project\login\jack-reacher-star-wars-interstellar-movie-john-wick-wallpaper-preview.jpg"no-repeat
+          center center fixed;
+        background-size: cover;
+        background-attachment: fixed;
+        z-index: -1; /* Moves the background behind everything */
+      }
+
+      .favorites-container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      .empty-message {
+        font-size: 20px;
+        color: gray;
+        margin-top: 50px;
+        text-align: center;
+        width: 100%;
+      }
+    </style>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="upper-container">
+      <div class="nav">
+        <a href="#" class="logo-container">
+          <img src="logo/video-camera.png" class="logo" />
+          <span id="lu">LU</span>TV
+        </a>
+
+        <div class="nav-center">
+          <ul class="nav-menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="movie.html">Movies</a></li>
+            <li><a href="series.html">Series</a></li>
+          </ul>
+          <div class="searchBox">
+            <button onclick="suggetion()" class="searchTab" aria-label="Search">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10ZM15.6177 17.0319C14.078 18.2635 12.125 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 12.125 18.2635 14.078 17.0319 15.6177L22.7071 21.2929L21.2929 22.7071L15.6177 17.0319Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </button>
+            <input type="text" class="searchInput" placeholder="Search..." />
+          </div>
+
+          <div class="toggle-switch">
+            <label class="switch-label">
+              <input type="checkbox" class="checkbox" id="modeToggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="Menucontainer">
+          <button class="humberger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+          </button>
+        </div>
+
+        <div class="Downmenu" id="Downmenu">
+          <a href="home.html">
+            <div class="img">
+              <img src="logo/home.png" alt="Home Icon" />
+            </div>
+            Home
+          </a>
+          <a href="#watchlist">
+            <div class="img">
+              <img src="logo/heart.png" alt="Watchlist Icon" />
+            </div>
+            <span id="favoritesPageButton">Favorite list</span>
+          </a>
+          <a href="randommovie.html">
+            <div class="img">
+              <img src="logo/surprise-box.png" alt="Random Movie Icon" />
+            </div>
+            Random Movie
+          </a>
+          <a href="index.html">
+            <div class="img">
+              <img src="logo/user.png" alt="User Icon" />
+            </div>
+            Log out
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="favorites-container" id="favoritesContainer"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const favoritesContainer =
+          document.getElementById("favoritesContainer");
+        const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        console.log("Retrieved favorites:", favorites);
+
+        if (favorites.length === 0) {
+          favoritesContainer.innerHTML =
+            "<p class='empty-message'>No favorite movies added yet.</p>";
+          return;
+        }
+
+        favorites.forEach((movie) => {
+          const movieElement = document.createElement("div");
+          movieElement.style.display = "flex";
+          movieElement.style.flexDirection = "column";
+          movieElement.style.alignItems = "flex-start";
+          movieElement.style.margin = "15px";
+
+          movieElement.innerHTML = `
+        <img src="${movie.image}"  alt="${movie.title}" style="width: 200px; border-radius: 10px; margin-bottom: 10px;"></img>
+        <h3 style="color: white; text-align: left; margin: 0;">${movie.title}</h3>
+      ;`;
+
+          favoritesContainer.appendChild(movieElement);
+        });
+      });
+    </script>
+    <script src="index.js"></script>
+  </body>
+</html>

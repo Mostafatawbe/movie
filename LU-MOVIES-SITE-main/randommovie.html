@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Movie Generator</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="upper-container">
+<div class="nav">
+
+<a href="#" class="logo-container">
+<img src="logo/video-camera.png" class="logo" /><span id="lu">LU</span>TV
+</a>
+<div class="nav-center">
+<ul class="nav-menu">
+<li><a href="home.html">Home</a></li>
+<li><a href="movie.html">Movies</a></li>
+<li><a href="series.html">Series</a></li>
+</ul>
+<div class="searchBox">
+<button onclick="suggetion()" class ="searchTab" aria-label="Search">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10ZM15.6177 17.0319C14.078 18.2635 12.125 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 12.125 18.2635 14.078 17.0319 15.6177L22.7071 21.2929L21.2929 22.7071L15.6177 17.0319Z" fill="currentColor"></path>
+</svg>
+</button>
+<input type="text" class="searchInput" placeholder="Search...">
+</div>
+
+<div class="toggle-switch">
+<label class="switch-label">
+<input type="checkbox" class="checkbox" id="modeToggle">
+<span class="slider"></span>
+</label>
+</div>
+</div>
+
+<div class="Menucontainer">
+<button class="humberger" >
+<div class="line1"></div>
+<div class="line2"></div>
+<div class="line3"></div>
+</button>
+</div>
+
+<div class="Downmenu" id="Downmenu">
+<a href="home.html">
+<div class="img">
+<img src="logo/home.png" alt="Home Icon" />
+</div>
+Home
+</a>
+<a href="favorites.html">
+<div class="img">
+<img src="logo/heart.png" alt="Watchlist Icon" />
+</div>
+<span>Favorite list</span>
+</a>
+<a href="randommovie.html">
+<div class="img">
+<img src="logo/surprise-box.png" alt="Random Movie Icon" />
+</div>
+Random Movie
+</a>
+<a href="index.html">
+<div class="img">
+<img src="logo/user.png" alt="User Icon" />
+</div>
+Log out
+</a>
+</div>
+</div>
+</div>
+    <div class="gen">
+        <h1>Random Movie Generator</h1>
+        <button id="generate-btn">Generate Movie</button>
+        <div id="movie-display">
+            <h2 id="movie-title"></h2>
+            <img id="movie-image" src="" alt="">
+            <p id="movie-description"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+       <script src="index.js"></script>
+</body>
+</html>

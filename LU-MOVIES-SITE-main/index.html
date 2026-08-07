@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href="logo/video-camera copy.png" type="image/x-icon">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="login.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  </head>
+  <body>
+    <div class="wrapper">
+      <form action="">
+        <h1>Login</h1>
+        <div class="input-box">
+          <input type="text" placeholder="username" required />
+          <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="password" required />
+          <i class='bx bxs-lock-alt'></i>
+        </div>
+        <div class="remember-forgot">
+         <label><input type="checkbox"> Remember me</label>
+         <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit" id="bon" class="btn">Login</button>
+        <div class="register-link">
+            <p>Don't have an account? <a href="#">Register</a></p>
+        </div>
+      </form>
+    </div>
+     <script>
+    document.getElementById("bon").addEventListener("click", function() {
+       event.preventDefault();
+        window.location.href = "home.html";
+    });
+</script>
+  </body>
+</html>
