@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- TODO: Add rules to control what gets backed up
+    <include domain="file" path="."/>
+    -->
+    <!-- Exclude the database if you don't want it backed up -->
+    <exclude domain="database" path="computer_shop.db"/>
+</full-backup-content>
